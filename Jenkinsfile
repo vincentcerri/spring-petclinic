@@ -3,18 +3,18 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh './mvnw clean'
-        sh './mvnw compile'
+        sh './mvn clean'
+        sh './mvn compile'
       }
     }
     stage('Test') {
       steps {
-        sh './mvnw test'  
+        sh './mvn test'  
       }
     }
     stage('Package') {
       steps {
-        sh './mvnw package'
+        sh './mvn package'
       }
     }
   }
