@@ -1,6 +1,9 @@
 pipeline {
   agent any
   stages {
+    stage('Start') {
+      slackSend (color: '#FFFF00', message: "Build Started '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})" )
+    }
     stage('Build') {
       steps {
         sh 'mvn clean'
@@ -17,8 +20,6 @@ pipeline {
     stage('Package') {
       steps {
         sh 'mvn package'
-        
-        slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
     }
 
