@@ -24,6 +24,11 @@ pipeline {
         sh 'mvn package'
       }
     }
-
+    
+    stage('End') {
+      steps {
+        slackSend (color: '#32CD32', message: "Build Completed '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})" ) 
+      }
+    }
   }
 }
